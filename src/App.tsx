@@ -12,6 +12,7 @@ import { ClusterStatsPage } from "pages/ClusterStatsPage";
 import { SupplyPage } from "pages/SupplyPage";
 import { TransactionDetailsPage } from "pages/TransactionDetailsPage";
 import { BlockDetailsPage } from "pages/BlockDetailsPage";
+import { SmartContractVerifyPage } from "pages/SmartContractVerifyPage";
 
 const ADDRESS_ALIASES = ["account", "accounts", "addresses"];
 const TX_ALIASES = ["txs", "txn", "txns", "transaction", "transactions"];
@@ -28,6 +29,9 @@ function App() {
         <Switch>
           <Route exact path={["/supply", "/accounts", "accounts/top"]}>
             <SupplyPage />
+          </Route>
+          <Route exact path={["/codeverify"]}>
+            <SmartContractVerifyPage />
           </Route>
           <Route
             exact
