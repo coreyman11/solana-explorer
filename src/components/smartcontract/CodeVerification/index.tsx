@@ -3,10 +3,10 @@ import {CodeStatus} from "./CodeStatus";
 import {CodeUpload} from "./CodeUpload";
 
 interface Props {
-  apiUrl: string;
+  getBaseURL: () => string;
 }
 
-export function CodeVerification({ apiUrl }: Props) {
+export function CodeVerification({ getBaseURL }: Props) {
   const [isStatus, setIsStatus] = React.useState(true);
 
   return (
@@ -39,7 +39,7 @@ export function CodeVerification({ apiUrl }: Props) {
         </div>
       </div>
       {
-        isStatus ? <CodeStatus apiUrl={apiUrl} /> : <CodeUpload apiUrl={apiUrl} />
+        isStatus ? <CodeStatus getBaseURL={getBaseURL} /> : <CodeUpload getBaseURL={getBaseURL} />
       }
     </>
   )

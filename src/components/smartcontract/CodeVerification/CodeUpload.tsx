@@ -106,12 +106,12 @@ export function CodeUpload({ getBaseURL }: Props) {
         <div>{listItems()}</div>
       </div>
       <form className="mt-5">
+        <label className="visually-hidden">Contract Address</label>
         <input
           type="text"
           disabled={!zipFile.selectedFile}
           className="form-control mb-5"
-          placeholder="contract address"
-          value={address}
+          placeholder="address"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setAddress(event.target.value);
           }}

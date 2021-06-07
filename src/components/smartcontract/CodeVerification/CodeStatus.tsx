@@ -72,11 +72,11 @@ export function CodeStatus({ getBaseURL }: Props) {
   return (
     <>
       <form className="mt-5">
+        <label className="visually-hidden">Contract Address</label>
         <input
           type="text"
           className="form-control mb-3"
-          placeholder="contract address"
-          value={address}
+          placeholder="address"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setAddress(event.target.value);
           }}

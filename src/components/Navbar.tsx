@@ -44,6 +44,11 @@ export function Navbar() {
                 Verify
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to={clusterPath("/codecall")}>
+                Call
+              </NavLink>
+            </li>
           </ul>
         </div>
 

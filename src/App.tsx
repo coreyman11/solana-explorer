@@ -13,6 +13,7 @@ import { SupplyPage } from "pages/SupplyPage";
 import { TransactionDetailsPage } from "pages/TransactionDetailsPage";
 import { BlockDetailsPage } from "pages/BlockDetailsPage";
 import { SmartContractVerifyPage } from "pages/SmartContractVerifyPage";
+import { SmartContractCallPage } from "pages/SmartContractCallPage";
 
 const ADDRESS_ALIASES = ["account", "accounts", "addresses"];
 const TX_ALIASES = ["txs", "txn", "txns", "transaction", "transactions"];
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path={["/codeverify"]}>
             <SmartContractVerifyPage />
+          </Route>
+          <Route exact path={["/codecall"]}>
+            <SmartContractCallPage />
           </Route>
           <Route
             exact
