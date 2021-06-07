@@ -148,7 +148,6 @@ export function ReadContract({ getRpcURL }: Props) {
 
   return (
     <>
-      <h1>Read Contract</h1>
       <form className="mt-5">
         <label className="visually-hidden">Contract Address</label>
         <input

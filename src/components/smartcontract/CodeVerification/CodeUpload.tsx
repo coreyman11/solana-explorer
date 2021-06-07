@@ -83,7 +83,6 @@ export function CodeUpload({ getBaseURL }: Props) {
 
   return (
     <>
-      <h1>Uploade Code</h1>
       <form>
         <div className="form-group">
           <input
