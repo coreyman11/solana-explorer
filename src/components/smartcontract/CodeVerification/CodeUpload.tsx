@@ -2,14 +2,16 @@ import React from "react";
 import JSZip from "jszip";
 
 interface Props {
-  apiUrl: string;
-}
+  getBaseURL: () => string;
+};
 
-export function CodeUpload({ apiUrl }: Props) {
+export function CodeUpload({ getBaseURL }: Props) {
   const [zipFile, setZipFile] = React.useState<{selectedFile: any | null}>({selectedFile: null});
+  const [schema, setSchema] = React.useState<{selectedFile: any | null}>({selectedFile: null});
   const [list, setList] = React.useState<{name: string, dir: boolean, date: Date}[]>([]);
   const [address, setAddress] = React.useState<string>('');
   const [status, setStatus] = React.useState<{uploading: boolean; success: boolean}>({uploading: false, success: false});
+  const [status2, setStatus2] = React.useState<{uploading: boolean; success: boolean}>({uploading: false, success: false});
 
   const onFileLoad = (event: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -50,15 +52,13 @@ export function CodeUpload({ apiUrl }: Props) {
   const onFileUpload = async () => {
     try {
       setStatus({uploading: true, success: false});
-
       const formData = new FormData();  
       formData.append( 
-        "solana", 
+        "program", 
         zipFile.selectedFile, 
         zipFile.selectedFile.name 
       );
-  
-      const res = await fetch(`${apiUrl}/contact/${address}/upload`, {
+      const res = await fetch(`${getBaseURL()}/account/${address}/program_upload`, {
         method: "POST",
         headers: { "Content-Type": "application/zip" },
         body: formData
@@ -83,11 +83,16 @@ export function CodeUpload({ apiUrl }: Props) {
 
   return (
     <>
-      <input
-        type="file"
-        className="mb-5"
-        onChange={onFileLoad}
-      />
+      <h1>Uploade Code</h1>
+      <form>
+        <div className="form-group">
+          <input
+            type="file"
+            className="mb-5"
+            onChange={onFileLoad}
+          />
+        </div>
+      </form>
       <div className="mb-5">
         <h2>File Details:</h2>
         <p>{`File Name : ${zipFile.selectedFile ? zipFile.selectedFile.name : ''}`}</p> 
@@ -117,7 +122,47 @@ export function CodeUpload({ apiUrl }: Props) {
         disabled={!zipFile.selectedFile || address === '' || status.uploading}
         onClick={onFileUpload}
       >
-        Upload
+        Upload Source Files (.zip)
+      </button>
+      <hr className="mt-5" />
+      <h1>Uploade Schema</h1>
+      <form>
+        <div className="form-group">
+          <input
+            type="file"
+            className="mb-5"
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const selectedFile = event.target.files ? event.target.files[0] : null;
+              setSchema({selectedFile});
+            }}
+          />
+        </div>
+      </form>
+      <button
+        className={!schema.selectedFile ? "btn btn-white" : `btn border-primary text-primary`}
+        disabled={!schema.selectedFile || address === '' || status2.uploading}
+        onClick={async () => {
+          try {
+            setStatus2({uploading: true, success: false});
+            const formData = new FormData();  
+            formData.append( 
+              "schema", 
+              schema.selectedFile, 
+              schema.selectedFile.name 
+            );      
+            const res = await fetch(`${getBaseURL()}/account/${address}/data_schema`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: formData
+            });
+            console.log(res);
+            setStatus2({uploading: false, success: true});
+          } catch (error) {
+            setStatus2({uploading: false, success: false});
+          }
+        }}
+      >
+        Upload JSON Schema (.json)
       </button>
     </>
   )

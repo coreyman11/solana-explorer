@@ -1,10 +1,10 @@
 import React from "react";
 
 interface Props {
-  apiUrl: string;
-}
+  getBaseURL: () => string;
+};
 
-export function CodeStatus({ apiUrl }: Props) {
+export function CodeStatus({ getBaseURL }: Props) {
   const [address, setAddress] = React.useState<string>('');
   const [status, setStatus] = React.useState<{
     address: string;
@@ -15,7 +15,7 @@ export function CodeStatus({ apiUrl }: Props) {
 
   const getStatus = async () => {
     try {
-      const res = await fetch(`${apiUrl}/contact/${address}/status`, {
+      const res = await fetch(`${getBaseURL()}/account/${address}/program_verify`, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -30,7 +30,7 @@ export function CodeStatus({ apiUrl }: Props) {
 
   const downloadCode = async () => {
     try {
-      const res = await fetch(`${apiUrl}/contact/${address}/download`, {
+      const res = await fetch(`${getBaseURL()}/account/${address}/program_download`, {
         method: "GET",
         headers: { "Content-Type": "application/zip" }
       });
@@ -41,9 +41,23 @@ export function CodeStatus({ apiUrl }: Props) {
     }
   }
 
+  const downloadSuggestedSchema = async () => {
+    try {
+      const res = await fetch(`${getBaseURL()}/account/${address}/suggested_data_schema`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      });
+      const json = await res.json();
+      console.log(json);
+      // TODO: save json
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const downloadSchema = async () => {
     try {
-      const res = await fetch(`test.json`, {
+      const res = await fetch(`${getBaseURL()}/account/${address}/data_schema`, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -82,6 +96,13 @@ export function CodeStatus({ apiUrl }: Props) {
           onClick={downloadCode}
         >
           download code
+        </button>
+        <button
+          className={`btn border-primary text-primary`}
+          disabled={address === ''}
+          onClick={downloadSuggestedSchema}
+        >
+          download suggested schema
         </button>
         <button
           className={`btn border-primary text-primary`}
