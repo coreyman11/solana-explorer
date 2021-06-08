@@ -95,7 +95,7 @@ export function SmartContractPage() {
             </li>
             <li className="nav-item">
               <a
-                href="#Upload"
+                href="#call"
                 className={menu === 2 ? "nav-link active" : "nav-link"}
                 onClick={() => setMenu(2)}
               >

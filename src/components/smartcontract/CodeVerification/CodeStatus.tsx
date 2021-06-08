@@ -6,6 +6,7 @@ interface Props {
 
 export function CodeStatus({ getBaseURL }: Props) {
   const [address, setAddress] = React.useState<string>('');
+  const [error0, setError0] = React.useState<{success: boolean, msg: string}>({success: false, msg: ''});
   const [status, setStatus] = React.useState<{
     address: string;
     verify: boolean;
@@ -81,6 +82,7 @@ export function CodeStatus({ getBaseURL }: Props) {
             setAddress(event.target.value);
           }}
         />
+        <span className={error0.success ? 'text-success' : 'text-danger'}>{error0.msg}</span>
       </form>
       <div className="mb-3">
         <button

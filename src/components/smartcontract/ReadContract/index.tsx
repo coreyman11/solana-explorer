@@ -161,7 +161,7 @@ export function ReadContract({ getRpcURL }: Props) {
         <span className={error0.success ? 'text-success' : 'text-danger'}>{error0.msg}</span>
       </form>
       <button
-        className="btn border-primary text-primary mt-2"
+        className="btn border-primary text-primary mt-3"
         disabled={!address}
         onClick={onClickConnectionBtn}
       >

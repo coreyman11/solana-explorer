@@ -83,6 +83,7 @@ export function CodeUpload({ getBaseURL }: Props) {
 
   return (
     <>
+      <h2>Uploade Contract</h2>
       <form>
         <div className="form-group">
           <input
@@ -93,7 +94,6 @@ export function CodeUpload({ getBaseURL }: Props) {
         </div>
       </form>
       <div className="mb-5">
-        <h2>File Details:</h2>
         <p>{`File Name : ${zipFile.selectedFile ? zipFile.selectedFile.name : ''}`}</p> 
         <p>{`File Type : ${zipFile.selectedFile ? zipFile.selectedFile.type : ''}`}</p> 
         <p> 
@@ -101,7 +101,6 @@ export function CodeUpload({ getBaseURL }: Props) {
         </p>
       </div>
       <div className="mb-5">
-        <h2>File List:</h2>
         <div>{listItems()}</div>
       </div>
       <form className="mt-5">
@@ -109,7 +108,7 @@ export function CodeUpload({ getBaseURL }: Props) {
         <input
           type="text"
           disabled={!zipFile.selectedFile}
-          className="form-control mb-5"
+          className="form-control mb-3"
           placeholder="address"
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setAddress(event.target.value);
@@ -124,7 +123,7 @@ export function CodeUpload({ getBaseURL }: Props) {
         Upload Source Files (.zip)
       </button>
       <hr className="mt-5" />
-      <h1>Uploade Schema</h1>
+      <h2>Uploade Schema</h2>
       <form>
         <div className="form-group">
           <input
