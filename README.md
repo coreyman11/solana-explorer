@@ -4,6 +4,8 @@
 
 https://twitter.com/OfficialCoreyS
 
+https://discord.gg/bFDajGeW
+
 # Solana Explorer
 
 ## Development
