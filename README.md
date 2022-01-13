@@ -2,6 +2,8 @@
     <img alt="Solana" src="https://i.imgur.com/uBVzyX3.png" width="250" />
 </p>
 
+https://twitter.com/OfficialCoreyS
+
 # Solana Explorer
 
 ## Development
